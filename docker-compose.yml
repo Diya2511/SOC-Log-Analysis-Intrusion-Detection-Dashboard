@@ -1,0 +1,24 @@
+# SOAR-X Elite — lab stack (platform + optional extra lab network hint).
+# The vulnerable demo app is embedded in the main Flask service (/demo/*).
+
+services:
+  soarx-elite:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      SECRET_KEY: ${SECRET_KEY:-change-me-in-production}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-changeme}
+      # Add Docker bridge or custom lab CIDRs you control, comma-separated:
+      LAB_EXTRA_CIDRS: ${LAB_EXTRA_CIDRS:-}
+      LOCAL_BASE_URL: http://127.0.0.1:5000
+    volumes:
+      - ./soarx.sqlite:/app/soarx.sqlite
+      - ./soarx/data:/app/soarx/data
+
+  # Optional: mock internal API for future extension (health only).
+  mock-api:
+    image: nginx:alpine
+    profiles: ["mock"]
+    ports:
+      - "8088:80"
