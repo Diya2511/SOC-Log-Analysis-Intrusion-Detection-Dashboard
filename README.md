@@ -16,14 +16,6 @@ This project is designed for safe, controlled security testing in environments y
 - Incident and evidence management workflows
 - Interactive dashboard with charting and reporting views
 
-## Screenshots
-
-Placeholder for screenshots:
-
-- Dashboard overview
-- Scan results and findings
-- Incident and forensic report views
-
 ## Installation
 
 ### Prerequisites
